@@ -94,6 +94,7 @@ class _CentreState extends State<Centre> {
                       builder: (context) => ChatPage(
                             image: profile[index],
                             name: name[index],
+                            chatt: chat[index],
                           )));
             },
           );

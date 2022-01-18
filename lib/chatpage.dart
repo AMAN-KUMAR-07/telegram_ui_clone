@@ -3,20 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:telegram/home_page.dart';
 
 class ChatPage extends StatefulWidget {
-  final String? image, name;
-  const ChatPage({Key? key, @required this.image, @required this.name})
+  final String? image, name, chatt;
+  const ChatPage(
+      {Key? key,
+      @required this.image,
+      @required this.name,
+      @required this.chatt})
       : super(key: key);
 
   @override
   _ChatPageState createState() {
     // ignore: no_logic_in_create_state
-    return _ChatPageState(image, name);
+    return _ChatPageState(image, name, chatt);
   }
 }
 
 class _ChatPageState extends State<ChatPage> {
-  String? image, name;
-  _ChatPageState(this.image, this.name);
+  String? image, name, chatt;
+  _ChatPageState(this.image, this.name, this.chatt);
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -61,24 +65,48 @@ class _ChatPageState extends State<ChatPage> {
                     )
                   ],
                 ),
-                Icon(
-                  Icons.call,
-                  size: 30.0,
-                  color: Colors.white,
-                ),
-                Icon(
-                  Icons.more_vert,
-                  size: 30.0,
-                  color: Colors.white,
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.call,
+                      size: 30.0,
+                      color: Colors.white,
+                    )),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.more_vert,
+                    size: 30.0,
+                    color: Colors.white,
+                  ),
                 )
               ],
             ),
             Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/bg1.jpg"), fit: BoxFit.cover),
-                ),
+              child: Stack(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/bg1.jpg"),
+                            fit: BoxFit.cover)),
+                  ),
+                  Container(
+                    margin:
+                        const EdgeInsets.only(left: 5.0, top: 5.0, bottom: 5.0),
+                    padding: const EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                        color: Colors.blueGrey.shade800,
+                        borderRadius: BorderRadius.circular(10.0)),
+                    child: Text(
+                      chatt!,
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 19.0,
+                      ),
+                    ),
+                  )
+                ],
               ),
             ),
             TextField(
@@ -93,18 +121,6 @@ class _ChatPageState extends State<ChatPage> {
                 hintText: "Message",
               ),
             )
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //   children: [
-            //     Icon(Icons.emoji_emotions_outlined),
-            //     inputbo
-            //     ),
-            //     Icon(
-            //       Icons.attach_file,
-            //     ),
-            //     Icon(Icons.mic_none_sharp)
-            //   ],
-            // )
           ],
         ),
       ),
